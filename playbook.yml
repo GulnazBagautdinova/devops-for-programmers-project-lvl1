@@ -7,9 +7,18 @@
         state: present
         update_cache: yes
       become: yes # <---
+      tags: git
 
     - name: remove git
       ansible.builtin.apt:
         name: git
         state: absent
       become: yes # <---
+
+    - name: cache apt
+      ansible.builtin.apt:
+        name: apt
+        state: latest
+      become: yes # <---
+      tags: cache
+        
